@@ -1,766 +1,1088 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<style>
+    /* Modern Apple-inspired style with glassmorphism and minimalist design */
+    :root {
+      --brand: #5599ed; /* Blue brand color */
+      --brand-light: rgba(85, 153, 237, 0.15);
+      --brand-medium: rgba(85, 153, 237, 0.3);
+      --black: #000000;
+      --dark-gray: rgba(18, 18, 18, 1);
+      --medium-gray: rgba(28, 28, 30, 0.9);
+      --light-gray: rgba(44, 44, 46, 0.8);
+      --white: #ffffff;
+      --glass-bg: rgba(28, 28, 30, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-highlight: rgba(255, 255, 255, 0.1);
+      --font-main: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+    }<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Appliefy — Innovation Solutions</title>
+  <title>Appliefy — Chrome Extensions</title>
   
   <!-- Meta Tags -->
-  <meta name="description" content="Appliefy is a leading tech innovation group crafting exceptional digital products and services since 2019. Our AI-enhanced solutions transform how businesses operate in the digital landscape.">
-  <meta name="keywords" content="appliefy, tech solutions, AI, digital innovation, chrome extensions">
+  <meta name="description" content="Discover Appliefy's collection of powerful Chrome extensions designed to enhance your browsing experience and boost productivity.">
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://appliefy.com/">
-  <meta property="og:title" content="Appliefy — Innovation Solutions">
-  <meta property="og:description" content="Appliefy is a leading tech innovation group crafting exceptional digital products and services since 2019. Our AI-enhanced solutions transform how businesses operate in the digital landscape.">
-  <meta property="og:image" content="https://appliefy.com/img/social-preview.jpg">
+  <meta property="og:url" content="https://appliefy.com/extensions.html">
+  <meta property="og:title" content="Appliefy — Chrome Extensions">
+  <meta property="og:description" content="Discover Appliefy's collection of powerful Chrome extensions designed to enhance your browsing experience and boost productivity.">
   
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://appliefy.com/">
-  <meta property="twitter:title" content="Appliefy — Innovation Solutions">
-  <meta property="twitter:description" content="Appliefy is a leading tech innovation group crafting exceptional digital products and services since 2019. Our AI-enhanced solutions transform how businesses operate in the digital landscape.">
-  <meta property="twitter:image" content="https://appliefy.com/img/social-preview.jpg">
+  <meta property="twitter:url" content="https://appliefy.com/extensions.html">
+  <meta property="twitter:title" content="Appliefy — Chrome Extensions">
+  <meta property="twitter:description" content="Discover Appliefy's collection of powerful Chrome extensions designed to enhance your browsing experience and boost productivity.">
   
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            primary: {
-              50: '#f0f9ff',
-              100: '#e0f2fe',
-              200: '#bae6fd',
-              300: '#7dd3fc',
-              400: '#38bdf8',
-              500: '#0ea5e9',
-              600: '#0284c7',
-              700: '#0369a1',
-              800: '#075985',
-              900: '#0c4a6e',
-            },
-            secondary: {
-              50: '#f8fafc',
-              100: '#f1f5f9',
-              200: '#e2e8f0',
-              300: '#cbd5e1',
-              400: '#94a3b8',
-              500: '#64748b',
-              600: '#475569',
-              700: '#334155',
-              800: '#1e293b',
-              900: '#0f172a',
-            }
-          },
-          fontFamily: {
-            sans: ['Inter var', 'sans-serif'],
-          },
-          animation: {
-            'fade-in': 'fadeIn 0.5s ease-in-out',
-            'slide-up': 'slideUp 0.5s ease-out',
-            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-          },
-          keyframes: {
-            fadeIn: {
-              '0%': { opacity: '0' },
-              '100%': { opacity: '1' },
-            },
-            slideUp: {
-              '0%': { transform: 'translateY(20px)', opacity: '0' },
-              '100%': { transform: 'translateY(0)', opacity: '1' },
-            }
-          }
-        }
-      }
-    }
-  </script>
-  
-  <!-- Google Fonts -->
-  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
-  
-  <!-- Additional Styles -->
   <style>
-    /* Base styles to ensure layout stability */
+    /* Minimalist style with 3 colors: black, white, and blue */
+    :root {
+      --brand: #5599ed; /* Blue brand color */
+      --black: #000000;
+      --white: #ffffff;
+      --dark-gray: #111111;
+      --medium-gray: #222222;
+      --light-gray: #333333;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
     html {
       scroll-behavior: smooth;
     }
     
     body {
-      min-height: 100vh;
-      width: 100%;
-      overflow-x: hidden;
-      position: relative;
+      font-family: var(--font-main);
+      line-height: 1.6;
+      color: var(--white);
+      background-color: var(--black);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      letter-spacing: -0.01em;
+    }
+    
+    /* Glassmorphism Card Effect */
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+    
+    .glass-hover {
+      transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+    
+    .glass-hover:hover {
+      background: rgba(44, 44, 46, 0.85);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+      border-color: var(--glass-highlight);
+    }
+    
+    a {
+      color: var(--white);
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+    
+    a:hover {
+      color: var(--brand);
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
     }
     
     .container {
       width: 100%;
-      max-width: 1280px;
-      margin-left: auto;
-      margin-right: auto;
-      padding-left: 1rem;
-      padding-right: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
     }
     
-    /* Fixed utility classes */
-    @layer utilities {
-      .text-shadow {
-        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      }
-      
-      .glass {
-        background: rgba(255, 255, 255, 0.25);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.18);
-      }
-      
-      .dark .glass {
-        background: rgba(15, 23, 42, 0.75);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-      }
-      
-      .gradient-text {
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
-        background-image: linear-gradient(90deg, #0ea5e9, #6366f1);
-      }
+    /* Header Styles */
+    header {
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      z-index: 100;
+      border-bottom: 1px solid var(--glass-border);
     }
     
-    /* Hide scrollbars but allow scrolling */
-    .scrollbar-hide::-webkit-scrollbar {
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      letter-spacing: -0.02em;
+    }
+    
+    .logo img {
+      height: 2.5rem;
+      margin-right: 0.5rem;
+      filter: brightness(0) invert(1); /* Make logo white */
+    }
+    
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    .nav-link {
+      font-weight: 500;
+      font-size: 0.95rem;
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--brand);
+      transition: width 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .nav-link.active {
+      color: var(--brand);
+    }
+    
+    .nav-link.active::after {
+      width: 100%;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .social-icon {
+      width: 1.2rem;
+      height: 1.2rem;
+      transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+    
+    .social-links a:hover .social-icon {
+      transform: scale(1.15);
+      color: var(--brand);
+    }
+    
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--white);
+    }
+    
+    /* Hero Section */
+    .hero {
+      padding: 8rem 0 6rem;
+      text-align: center;
+      background: linear-gradient(to bottom, var(--dark-gray), var(--black));
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 30% 30%, var(--brand-medium) 0%, transparent 35%);
+      opacity: 0.5;
+    }
+    
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+    
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 720px;
+      margin: 0 auto 2.5rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .highlight {
+      color: var(--brand);
+      position: relative;
+      display: inline-block;
+    }
+    
+    .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 5px;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background-color: var(--brand-light);
+      z-index: -1;
+      border-radius: 4px;
+    }
+    
+    .about-extensions {
+      padding: 7rem 0;
+      background-color: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .about-extensions::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--glass-highlight), transparent);
+    }
+    
+    .about-container {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    
+    .about-image {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+    }
+    
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: brightness(0.9);
+    }
+    
+    .about-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      box-shadow: inset 0 0 0 1px var(--glass-highlight);
+    }
+    
+    .about-content h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+    
+    .about-content p {
+      margin-bottom: 1.5rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    /* Extension List */
+    .extensions {
+      padding: 7rem 0;
+      background-color: var(--black);
+      position: relative;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 5rem;
+      position: relative;
+    }
+    
+    .section-title {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.03em;
+    }
+    
+    .section-subtitle {
+      font-size: 1.25rem;
+      max-width: 720px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .extension-card {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 2.5rem;
+      margin-bottom: 3.5rem;
+      padding: 2.5rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+    
+    .extension-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--glass-highlight);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+    
+    .extension-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+    
+    .extension-icon-circle {
+      width: 9rem;
+      height: 9rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(85, 153, 237, 0.15), rgba(85, 153, 237, 0.05));
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(85, 153, 237, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+    
+    .extension-card:hover .extension-icon-circle {
+      transform: scale(1.05);
+      border-color: rgba(85, 153, 237, 0.3);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+    
+    .extension-icon svg {
+      width: 4rem;
+      height: 4rem;
+      color: var(--brand);
+    }
+    
+    .extension-content {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .extension-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .extension-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    
+    .extension-badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      padding: 0.25rem 0.75rem;
+      background-color: var(--brand);
+      color: var(--white);
+    }
+    
+    .extension-badge.inactive {
+      background-color: var(--black);
+    }
+    
+    .extension-description {
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .tag {
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
+      background-color: var(--medium-gray);
+    }
+    
+    .extension-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    
+    .btn-primary {
+      background-color: var(--brand);
+      color: var(--white);
+      border: 2px solid var(--brand);
+    }
+    
+    .btn-primary:hover {
+      background-color: transparent;
+      color: var(--brand);
+    }
+    
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--black);
+      border: 2px solid var(--black);
+    }
+    
+    .btn-secondary:hover {
+      background-color: var(--black);
+      color: var(--white);
+    }
+    
+    .btn-disabled {
+      background-color: var(--light-gray);
+      color: var(--black);
+      border: 2px solid var(--light-gray);
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+    
+    .notify-link {
+      color: var(--brand);
+      font-weight: 600;
+    }
+    
+    /* Development Services */
+    .development {
+      padding: 6rem 0;
+      background-color: var(--dark-gray);
+    }
+    
+    .development-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    
+    .dev-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .dev-content p {
+      margin-bottom: 1.5rem;
+    }
+    
+    .dev-features {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+    
+    .dev-feature {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    
+    .feature-icon {
+      color: var(--brand);
+      margin-right: 1rem;
+      flex-shrink: 0;
+    }
+    
+    .process-card {
+      border: 1px solid var(--brand);
+      padding: 2rem;
+      background-color: var(--medium-gray);
+    }
+    
+    .process-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .process-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    
+    .process-steps {
+      list-style: none;
+    }
+    
+    .process-step {
+      display: flex;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--light-gray);
+    }
+    
+    .process-step:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    
+    .step-number {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background-color: var(--brand);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin-right: 1rem;
+      flex-shrink: 0;
+    }
+    
+    .step-content h4 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    
+    .step-content p {
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    /* Newsletter Section */
+    .newsletter {
+      padding: 6rem 0;
+      background-color: var(--black);
+      color: var(--white);
+      text-align: center;
+    }
+    
+    .newsletter h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .newsletter p {
+      max-width: 720px;
+      margin: 0 auto 2.5rem;
+    }
+    
+    .newsletter-form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .form-control {
+      display: flex;
+    }
+    
+    .newsletter-input {
+      flex-grow: 1;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      font-family: inherit;
+      background-color: var(--medium-gray);
+      color: var(--white);
+    }
+    
+    .newsletter-input:focus {
+      outline: 2px solid var(--brand);
+    }
+    
+    .policy-text {
+      font-size: 0.875rem;
+      opacity: 0.7;
+    }
+    
+    /* Footer */
+    footer {
+      padding: 2rem 0;
+      text-align: center;
+      border-top: 1px solid var(--light-gray);
+    }
+    
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    footer p {
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    /* Mobile Menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: var(--black);
+      padding: 2rem;
+      z-index: 200;
       display: none;
     }
     
-    .scrollbar-hide {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+    .mobile-menu.active {
+      display: block;
     }
     
-    /* Ensure grid layouts have proper spacing */
-    .grid {
-      display: grid;
-      grid-gap: 2rem;
+    .mobile-menu-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--white);
     }
     
-    /* Responsive adjustments */
+    .mobile-nav {
+      margin-top: 2rem;
+    }
+    
+    .mobile-nav-item {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--light-gray);
+      display: block;
+    }
+    
+    .mobile-social {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .about-container, 
+      .development-grid,
+      .extension-card {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .extension-icon {
+        justify-content: flex-start;
+      }
+      
+      .hero h1, 
+      .section-title,
+      .about-content h2,
+      .dev-content h2 {
+        font-size: 2rem;
+      }
+    }
+    
     @media (max-width: 768px) {
-      .container {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
+      .nav-menu, 
+      .social-links {
+        display: none;
+      }
+      
+      .mobile-toggle {
+        display: block;
+      }
+      
+      .extension-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+      
+      .extension-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+      
+      .footer-container {
+        flex-direction: column;
+        gap: 1rem;
       }
     }
   </style>
 </head>
 
-<body class="antialiased text-secondary-800 bg-white dark:bg-secondary-900 dark:text-white transition-colors duration-300">
-  <!-- Theme toggle button (top-right corner) -->
-  <div class="fixed top-4 right-4 z-50">
-    <button id="theme-toggle" class="p-2 rounded-full bg-secondary-100 dark:bg-secondary-800 text-secondary-800 dark:text-white shadow-lg transition-all duration-300 hover:shadow-xl">
-      <!-- Sun icon -->
-      <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-      </svg>
-      <!-- Moon icon -->
-      <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-      </svg>
-    </button>
-  </div>
-  
-  <!-- Top Announcement Bar -->
-  <div class="bg-primary-600 text-white px-4 py-2 text-center text-sm font-medium relative animate-fade-in">
-    <p>🚀 New AI-powered product coming soon! <a href="#subscribe" class="underline font-bold">Join the waitlist</a></p>
-    <button id="close-announcement" class="absolute right-2 top-2 text-white hover:text-primary-200 transition-colors">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-      </svg>
-    </button>
-  </div>
-  
+<body>
   <!-- Header -->
-  <header class="sticky top-0 z-40 bg-white dark:bg-secondary-900 border-b border-secondary-200 dark:border-secondary-800 transition-colors duration-300">
-    <nav class="container mx-auto flex items-center justify-between px-4 py-4 lg:px-8">
-      <!-- Logo -->
-      <a href="/" class="flex items-center space-x-2" aria-label="Appliefy Logo">
-        <img src="img/logo.png" alt="Appliefy Logo" class="h-10 w-auto">
-        <span class="font-bold text-xl hidden sm:block">Appliefy</span>
+  <header>
+    <div class="container header-container">
+      <a href="/" class="logo">
+        <img src="img/logo.png" alt="Appliefy Logo">
+        <span>Appliefy</span>
       </a>
       
-      <!-- Mobile Menu Toggle -->
-      <button id="mobile-menu-toggle" class="lg:hidden text-secondary-800 dark:text-white">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
+      <nav class="nav-menu">
+        <a href="index.html#about" class="nav-link">About</a>
+        <a href="index.html#products" class="nav-link">Products</a>
+        <a href="./extensions.html" class="nav-link active">Extensions</a>
+        <a href="index.html#contact" class="nav-link">Contact</a>
+      </nav>
       
-      <!-- Desktop Navigation -->
-      <div class="hidden lg:flex items-center space-x-8">
-        <a href="#about" class="text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">About</a>
-        <a href="#products" class="text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Products</a>
-        <a href="./extensions.html" class="text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Extensions</a>
-        <a href="#contact" class="text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Contact</a>
-        <a href="#" class="bg-primary-600 hover:bg-primary-700 text-white px-5 py-2 rounded-full font-medium shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all">Get Started</a>
-      </div>
-      
-      <!-- Social Links -->
-      <div class="hidden lg:flex items-center space-x-4">
-        <a href="mailto:info@appliefy.com" class="text-secondary-500 hover:text-primary-600 dark:text-secondary-400 dark:hover:text-primary-400 transition-colors" aria-label="Email">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <div class="social-links">
+        <a href="mailto:info@appliefy.com" aria-label="Email">
+          <svg class="social-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
           </svg>
         </a>
-        <a href="https://www.instagram.com/appliefy/" class="text-secondary-500 hover:text-primary-600 dark:text-secondary-400 dark:hover:text-primary-400 transition-colors" aria-label="Instagram">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+        <a href="https://www.instagram.com/appliefy/" aria-label="Instagram">
+          <svg class="social-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
             <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
             <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
           </svg>
         </a>
-        <a href="https://linkedin.com/company/appliefy" class="text-secondary-500 hover:text-primary-600 dark:text-secondary-400 dark:hover:text-primary-400 transition-colors" aria-label="LinkedIn">
-          <svg class="w-5 h-5" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" viewBox="0 0 24 24">
+        <a href="https://linkedin.com/company/appliefy" aria-label="LinkedIn">
+          <svg class="social-icon" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" viewBox="0 0 24 24">
             <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
             <circle cx="4" cy="4" r="2" stroke="none"></circle>
           </svg>
         </a>
       </div>
-    </nav>
-    
-    <!-- Mobile Navigation Menu -->
-    <div id="mobile-menu" class="hidden lg:hidden absolute w-full bg-white dark:bg-secondary-900 border-b border-secondary-200 dark:border-secondary-800 shadow-lg animate-fade-in">
-      <div class="container mx-auto px-4 py-6 space-y-6">
-        <a href="#about" class="block text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">About</a>
-        <a href="#products" class="block text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Products</a>
-        <a href="./extensions.html" class="block text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Extensions</a>
-        <a href="#contact" class="block text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Contact</a>
-        <a href="#" class="block w-full text-center bg-primary-600 hover:bg-primary-700 text-white px-5 py-3 rounded-lg font-medium shadow-md hover:shadow-lg transition-all">Get Started</a>
-        <div class="pt-4 border-t border-secondary-200 dark:border-secondary-800">
-          <div class="flex items-center space-x-6">
-            <a href="mailto:info@appliefy.com" class="text-secondary-500 hover:text-primary-600 dark:text-secondary-400 dark:hover:text-primary-400 transition-colors" aria-label="Email">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-              </svg>
-            </a>
-            <a href="https://www.instagram.com/appliefy/" class="text-secondary-500 hover:text-primary-600 dark:text-secondary-400 dark:hover:text-primary-400 transition-colors" aria-label="Instagram">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
-                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
-              </svg>
-            </a>
-            <a href="https://linkedin.com/company/appliefy" class="text-secondary-500 hover:text-primary-600 dark:text-secondary-400 dark:hover:text-primary-400 transition-colors" aria-label="LinkedIn">
-              <svg class="w-5 h-5" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" viewBox="0 0 24 24">
-                <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
-                <circle cx="4" cy="4" r="2" stroke="none"></circle>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
+      
+      <button class="mobile-toggle" aria-label="Menu">
+        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
     </div>
   </header>
   
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <button class="mobile-menu-close" aria-label="Close menu">
+      <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+    
+    <nav class="mobile-nav">
+      <a href="index.html#about" class="mobile-nav-item">About</a>
+      <a href="index.html#products" class="mobile-nav-item">Products</a>
+      <a href="./extensions.html" class="mobile-nav-item">Extensions</a>
+      <a href="index.html#contact" class="mobile-nav-item">Contact</a>
+    </nav>
+    
+    <div class="mobile-social">
+      <a href="mailto:info@appliefy.com" aria-label="Email">
+        <svg class="social-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+        </svg>
+      </a>
+      <a href="https://www.instagram.com/appliefy/" aria-label="Instagram">
+        <svg class="social-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+          <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+        </svg>
+      </a>
+      <a href="https://linkedin.com/company/appliefy" aria-label="LinkedIn">
+        <svg class="social-icon" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" viewBox="0 0 24 24">
+          <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+          <circle cx="4" cy="4" r="2" stroke="none"></circle>
+        </svg>
+      </a>
+    </div>
+  </div>
+  
   <!-- Hero Section -->
-  <section class="relative overflow-hidden bg-gradient-to-br from-primary-50 to-white dark:from-secondary-900 dark:to-secondary-800 transition-colors duration-300">
-    <!-- Fixed background elements -->
-    <div class="absolute inset-0 opacity-30 dark:opacity-10">
-      <div class="absolute top-10 left-10 w-64 h-64 md:w-96 md:h-96 bg-primary-400 rounded-full filter blur-2xl md:blur-3xl mix-blend-multiply"></div>
-      <div class="absolute bottom-10 right-10 w-64 h-64 md:w-96 md:h-96 bg-primary-300 rounded-full filter blur-2xl md:blur-3xl mix-blend-multiply"></div>
-    </div>
-    
-    <div class="container mx-auto py-16 md:py-20 lg:py-32 relative z-10">
-      <div class="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
-        <div class="w-full max-w-xl mx-auto lg:mx-0 text-center lg:text-left">
-          <div class="inline-block px-3 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 text-sm font-medium mb-6">
-            Innovation for the future
-          </div>
-          <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 leading-tight text-shadow">
-            Transform Your Digital <span class="gradient-text">Experience</span>
-          </h1>
-          <p class="text-base md:text-lg lg:text-xl text-secondary-600 dark:text-secondary-300 mb-8">
-            Appliefy creates innovative digital products and services that enhance your online presence and streamline your workflow with AI-powered solutions.
-          </p>
-          <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
-            <a href="#products" class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-medium shadow-md hover:shadow-lg transition-all text-center">
-              Explore Products
-            </a>
-            <a href="#contact" class="bg-white dark:bg-secondary-800 border border-secondary-300 dark:border-secondary-700 text-secondary-800 dark:text-white hover:bg-secondary-100 dark:hover:bg-secondary-700 px-6 py-3 rounded-lg font-medium shadow-md hover:shadow-lg transition-all text-center">
-              Contact Us
-            </a>
-          </div>
-        </div>
-        <div class="relative w-full max-w-md mx-auto lg:max-w-full">
-          <div class="absolute inset-0 bg-gradient-to-r from-primary-500 to-primary-600 rounded-xl rotate-2 blur-lg opacity-20"></div>
-          <div class="relative bg-white dark:bg-secondary-800 rounded-xl shadow-xl overflow-hidden border border-secondary-200 dark:border-secondary-700">
-            <img src="/api/placeholder/600/400" alt="Appliefy Dashboard" class="w-full h-auto object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end">
-              <div class="p-4 md:p-6 text-white">
-                <p class="text-sm font-medium">Appliefy Dashboard</p>
-                <h3 class="text-lg md:text-xl font-bold">Manage all your digital products in one place</h3>
-              </div>
-            </div>
-          </div>
-          <div class="absolute -bottom-4 -right-4 bg-white dark:bg-secondary-800 rounded-lg shadow-lg p-3 border border-secondary-200 dark:border-secondary-700">
-            <div class="text-primary-600 dark:text-primary-400 font-bold text-base md:text-lg">AI-Powered</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Trusted By Section -->
-    <div class="container mx-auto px-4 pb-16 relative z-10">
-      <div class="text-center mb-8">
-        <p class="text-secondary-500 dark:text-secondary-400 font-medium">Trusted by innovative companies worldwide</p>
-      </div>
-      <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-8">
-        <img src="/api/placeholder/120/40" alt="Company Logo" class="h-8 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0">
-        <img src="/api/placeholder/120/40" alt="Company Logo" class="h-8 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0">
-        <img src="/api/placeholder/120/40" alt="Company Logo" class="h-8 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0">
-        <img src="/api/placeholder/120/40" alt="Company Logo" class="h-8 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0">
-        <img src="/api/placeholder/120/40" alt="Company Logo" class="h-8 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0">
-      </div>
+  <section class="hero">
+    <div class="container">
+      <h1>Chrome <span class="highlight">Extensions</span></h1>
+      <p>Enhance your browsing experience with our collection of innovative and productivity-boosting Chrome extensions.</p>
     </div>
   </section>
   
-  <!-- About Section -->
-  <section id="about" class="py-20 lg:py-32 bg-white dark:bg-secondary-900 transition-colors duration-300">
-    <div class="container mx-auto px-4">
-      <div class="max-w-3xl mx-auto text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-shadow">About Appliefy</h2>
-        <div class="w-20 h-1 bg-primary-500 mx-auto mb-6"></div>
-        <p class="text-lg text-secondary-600 dark:text-secondary-300 leading-relaxed">
-          Pioneering digital innovation since 2019, we specialize in creating exceptional products and solutions that drive business growth.
-        </p>
+  <!-- About Extensions -->
+  <section class="about-extensions">
+    <div class="container about-container">
+      <div class="about-image">
+        <img src="img/4.svg" alt="Chrome Extensions">
       </div>
       
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <div class="order-2 lg:order-1">
-          <h3 class="text-2xl md:text-3xl font-bold mb-6 text-shadow">Our Expertise and Vision</h3>
-          <p class="text-secondary-600 dark:text-secondary-300 mb-6 leading-relaxed">
-            Appliefy is a forward-thinking tech company that has been specializing in the creation of innovative products and services for over 6 years. With extensive expertise and consistent delivery of results, we've established strong partnerships with our clients while continuously expanding our reach.
-          </p>
-          <p class="text-secondary-600 dark:text-secondary-300 mb-8 leading-relaxed">
-            Our team consists of industry leaders and technical experts who bring world-class consulting solutions to our clients. Our core strength lies in seamlessly integrating with client organizations to optimize existing resources and successfully implement transformative strategies powered by the latest technologies, including AI and machine learning.
-          </p>
-          
-          <div class="grid grid-cols-2 gap-6">
-            <div class="bg-primary-50 dark:bg-secondary-800 p-6 rounded-xl border border-primary-100 dark:border-secondary-700">
-              <div class="text-primary-600 dark:text-primary-400 font-bold text-3xl mb-2">6+</div>
-              <div class="text-secondary-700 dark:text-secondary-300 font-medium">Years of Experience</div>
-            </div>
-            <div class="bg-primary-50 dark:bg-secondary-800 p-6 rounded-xl border border-primary-100 dark:border-secondary-700">
-              <div class="text-primary-600 dark:text-primary-400 font-bold text-3xl mb-2">50+</div>
-              <div class="text-secondary-700 dark:text-secondary-300 font-medium">Satisfied Clients</div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="order-1 lg:order-2 relative max-w-lg mx-auto">
-          <div class="absolute inset-0 bg-gradient-to-r from-primary-500 to-primary-600 rounded-3xl -rotate-3 blur-xl opacity-20 animate-pulse-slow"></div>
-          <img src="img/3.svg" alt="About Appliefy" class="relative rounded-3xl shadow-xl w-full h-auto z-10">
-        </div>
+      <div class="about-content">
+        <h2>About Google Extensions</h2>
+        <p>Chrome Extensions are powerful tools that enhance the functionality, usability, and user experience of the Chrome web browser. Our team creates extensions using modern web technologies like HTML, CSS, JavaScript, and the latest browser APIs.</p>
+        <p>With our custom-built extensions, you can streamline your workflow, automate repetitive tasks, and add new capabilities to your browsing experience. Each extension is designed with attention to performance, security, and user experience.</p>
       </div>
     </div>
   </section>
   
-  <!-- Products Section -->
-  <section id="products" class="py-20 lg:py-32 bg-secondary-50 dark:bg-secondary-800 transition-colors duration-300">
-    <div class="container mx-auto px-4">
-      <div class="max-w-3xl mx-auto text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-shadow">Our Innovative Products</h2>
-        <div class="w-20 h-1 bg-primary-500 mx-auto mb-6"></div>
-        <p class="text-lg text-secondary-600 dark:text-secondary-300 leading-relaxed">
-          Discover our suite of digital solutions designed to enhance your online experience and boost productivity.
-        </p>
+  <!-- Extension Showcase -->
+  <section class="extensions">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Our <span class="highlight">Extensions</span></h2>
+        <p class="section-subtitle">Discover our collection of extensions designed to enhance your productivity and browsing experience.</p>
       </div>
       
-      <!-- Product Cards -->
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-        <!-- Fooddy Today -->
-        <div class="bg-white dark:bg-secondary-900 rounded-lg shadow-lg overflow-hidden border border-secondary-200 dark:border-secondary-700 flex flex-col">
-          <div class="relative h-48 overflow-hidden">
-            <img src="img/2.svg" alt="Fooddy Today" class="w-full h-full object-cover">
-            <div class="absolute top-3 right-3 bg-primary-500 text-white text-xs font-bold px-2 py-1 rounded-md">ACTIVE</div>
-          </div>
-          <div class="p-4 md:p-6 flex-grow flex flex-col">
-            <h3 class="text-lg md:text-xl font-bold mb-2">Fooddy Today</h3>
-            <p class="text-secondary-600 dark:text-secondary-400 mb-4 flex-grow">
-              An AI-powered nutrition platform that provides detailed nutritional value, insulin index, and glycemic index for thousands of food products, helping you maintain a healthy balanced diet.
-            </p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 text-xs px-2 py-1 rounded-md">Nutrition</span>
-              <span class="bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 text-xs px-2 py-1 rounded-md">Health</span>
-              <span class="bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 text-xs px-2 py-1 rounded-md">AI-Powered</span>
-            </div>
-            <a href="https://fooddy.appliefy.com" class="block w-full text-center bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-md font-medium transition-colors">
-              Try Now
-            </a>
-          </div>
-        </div>
-        
-        <!-- Applieshop -->
-        <div class="bg-white dark:bg-secondary-900 rounded-lg shadow-lg overflow-hidden border border-secondary-200 dark:border-secondary-700 flex flex-col">
-          <div class="relative h-48 overflow-hidden">
-            <img src="img/1.svg" alt="Applieshop" class="w-full h-full object-cover">
-            <div class="absolute top-3 right-3 bg-secondary-500 text-white text-xs font-bold px-2 py-1 rounded-md">COMING SOON</div>
-          </div>
-          <div class="p-4 md:p-6 flex-grow flex flex-col">
-            <h3 class="text-lg md:text-xl font-bold mb-2">Applieshop</h3>
-            <p class="text-secondary-600 dark:text-secondary-400 mb-4 flex-grow">
-              A premium online marketplace for high-quality mobile accessories and smart gadgets. Our curated selection includes original products to enhance your digital lifestyle and make perfect gifts.
-            </p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 text-xs px-2 py-1 rounded-md">E-commerce</span>
-              <span class="bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 text-xs px-2 py-1 rounded-md">Gadgets</span>
-              <span class="bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 text-xs px-2 py-1 rounded-md">Accessories</span>
-            </div>
-            <div class="block w-full text-center bg-secondary-200 dark:bg-secondary-700 text-secondary-700 dark:text-secondary-300 cursor-not-allowed px-4 py-2 rounded-md font-medium">
-              Coming Soon
-            </div>
-          </div>
-        </div>
-        
-        <!-- Chrome Extensions -->
-        <div class="bg-white dark:bg-secondary-900 rounded-lg shadow-lg overflow-hidden border border-secondary-200 dark:border-secondary-700 flex flex-col">
-          <div class="relative h-48 overflow-hidden">
-            <img src="img/4.svg" alt="Chrome Extensions" class="w-full h-full object-cover">
-            <div class="absolute top-3 right-3 bg-primary-500 text-white text-xs font-bold px-2 py-1 rounded-md">MULTIPLE</div>
-          </div>
-          <div class="p-4 md:p-6 flex-grow flex flex-col">
-            <h3 class="text-lg md:text-xl font-bold mb-2">Google Extensions</h3>
-            <p class="text-secondary-600 dark:text-secondary-400 mb-4 flex-grow">
-              Our collection of powerful browser extensions enhances productivity and improves user experience. We develop custom solutions using cutting-edge web technologies that integrate seamlessly with your workflow.
-            </p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 text-xs px-2 py-1 rounded-md">Chrome</span>
-              <span class="bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 text-xs px-2 py-1 rounded-md">Productivity</span>
-              <span class="bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 text-xs px-2 py-1 rounded-md">Automation</span>
-            </div>
-            <a href="./extensions.html" class="block w-full text-center bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-md font-medium transition-colors">
-              Learn More
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Features Section -->
-  <section class="py-20 lg:py-32 bg-white dark:bg-secondary-900 transition-colors duration-300">
-    <div class="container mx-auto px-4">
-      <div class="max-w-3xl mx-auto text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-shadow">Why Choose Appliefy</h2>
-        <div class="w-20 h-1 bg-primary-500 mx-auto mb-6"></div>
-        <p class="text-lg text-secondary-600 dark:text-secondary-300 leading-relaxed">
-          We combine technical expertise with innovative thinking to deliver exceptional solutions that drive business growth.
-        </p>
-      </div>
-      
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Feature 1 -->
-        <div class="bg-secondary-50 dark:bg-secondary-800 p-8 rounded-2xl border border-secondary-200 dark:border-secondary-700">
-          <div class="w-14 h-14 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center mb-6">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-600 dark:text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+      <!-- CV Djinni Extension -->
+      <div class="extension-card">
+        <div class="extension-icon">
+          <div class="extension-icon-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
           </div>
-          <h3 class="text-xl font-bold mb-3">Innovative Solutions</h3>
-          <p class="text-secondary-600 dark:text-secondary-400">
-            We stay at the forefront of technology, incorporating AI, machine learning, and advanced frameworks to create solutions that are ahead of the curve.
-          </p>
         </div>
         
-        <!-- Feature 2 -->
-        <div class="bg-secondary-50 dark:bg-secondary-800 p-8 rounded-2xl border border-secondary-200 dark:border-secondary-700">
-          <div class="w-14 h-14 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center mb-6">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-600 dark:text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold mb-3">High Performance</h3>
-          <p class="text-secondary-600 dark:text-secondary-400">
-            Our products and services are optimized for speed, reliability, and scalability, ensuring a seamless experience for your users.
-          </p>
-        </div>
-        
-        <!-- Feature 3 -->
-        <div class="bg-secondary-50 dark:bg-secondary-800 p-8 rounded-2xl border border-secondary-200 dark:border-secondary-700">
-          <div class="w-14 h-14 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center mb-6">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-600 dark:text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold mb-3">Security First</h3>
-          <p class="text-secondary-600 dark:text-secondary-400">
-            We prioritize the security and privacy of your data with industry-standard protocols and best practices throughout our development process.
-          </p>
-        </div>
-        
-        <!-- Feature 4 -->
-        <div class="bg-secondary-50 dark:bg-secondary-800 p-8 rounded-2xl border border-secondary-200 dark:border-secondary-700">
-          <div class="w-14 h-14 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center mb-6">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-600 dark:text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold mb-3">Global Reach</h3>
-          <p class="text-secondary-600 dark:text-secondary-400">
-            Our products are designed for international audiences, with multi-language support and consideration for regional requirements.
-          </p>
-        </div>
-        
-        <!-- Feature 5 -->
-        <div class="bg-secondary-50 dark:bg-secondary-800 p-8 rounded-2xl border border-secondary-200 dark:border-secondary-700">
-          <div class="w-14 h-14 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center mb-6">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-600 dark:text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold mb-3">Expert Team</h3>
-          <p class="text-secondary-600 dark:text-secondary-400">
-            Our diverse team of specialists brings together expertise from various fields to create holistic solutions for your business needs.
-          </p>
-        </div>
-        
-        <!-- Feature 6 -->
-        <div class="bg-secondary-50 dark:bg-secondary-800 p-8 rounded-2xl border border-secondary-200 dark:border-secondary-700">
-          <div class="w-14 h-14 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center mb-6">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-600 dark:text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold mb-3">Quality Assurance</h3>
-          <p class="text-secondary-600 dark:text-secondary-400">
-            We maintain rigorous testing standards throughout our development process to deliver reliable, bug-free products that exceed expectations.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Testimonials Section -->
-  <section class="py-20 lg:py-32 bg-secondary-50 dark:bg-secondary-800 transition-colors duration-300">
-    <div class="container mx-auto px-4">
-      <div class="max-w-3xl mx-auto text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-shadow">What Our Clients Say</h2>
-        <div class="w-20 h-1 bg-primary-500 mx-auto mb-6"></div>
-        <p class="text-lg text-secondary-600 dark:text-secondary-300 leading-relaxed">
-          Hear from businesses that have transformed their digital presence with our solutions.
-        </p>
-      </div>
-      
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Testimonial 1 -->
-        <div class="bg-white dark:bg-secondary-900 p-8 rounded-2xl shadow-lg border border-secondary-200 dark:border-secondary-700">
-          <div class="flex items-center mb-6">
-            <div class="text-primary-500 mr-2">
-              <!-- Star Rating -->
-              <div class="flex">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <p class="text-secondary-600 dark:text-secondary-400 italic mb-6">
-            "Appliefy transformed our digital workflow with their Chrome extension. The team's attention to detail and technical expertise exceeded our expectations. Highly recommended!"
-          </p>
-          <div class="flex items-center">
-            <div class="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center mr-4">
-              <div class="text-primary-600 font-bold">JS</div>
-            </div>
-            <div>
-              <h4 class="font-bold">Jessica Smith</h4>
-              <p class="text-secondary-500 dark:text-secondary-400 text-sm">Tech Lead, DataFlow Inc.</p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Testimonial 2 -->
-        <div class="bg-white dark:bg-secondary-900 p-8 rounded-2xl shadow-lg border border-secondary-200 dark:border-secondary-700">
-          <div class="flex items-center mb-6">
-            <div class="text-primary-500 mr-2">
-              <!-- Star Rating -->
-              <div class="flex">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <p class="text-secondary-600 dark:text-secondary-400 italic mb-6">
-            "Fooddy Today has been a game-changer for our nutrition clinic. The detailed data and user-friendly interface have made our work much more efficient and improved patient outcomes."
-          </p>
-          <div class="flex items-center">
-            <div class="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center mr-4">
-              <div class="text-primary-600 font-bold">MR</div>
-            </div>
-            <div>
-              <h4 class="font-bold">Dr. Michael Roberts</h4>
-              <p class="text-secondary-500 dark:text-secondary-400 text-sm">Nutritionist, Wellness Center</p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Testimonial 3 -->
-        <div class="bg-white dark:bg-secondary-900 p-8 rounded-2xl shadow-lg border border-secondary-200 dark:border-secondary-700">
-          <div class="flex items-center mb-6">
-            <div class="text-primary-500 mr-2">
-              <!-- Star Rating -->
-              <div class="flex">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <p class="text-secondary-600 dark:text-secondary-400 italic mb-6">
-            "We partnered with Appliefy for a custom solution, and they delivered beyond our expectations. Their team's technical knowledge and innovative approach helped us solve complex challenges."
-          </p>
-          <div class="flex items-center">
-            <div class="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center mr-4">
-              <div class="text-primary-600 font-bold">AT</div>
-            </div>
-            <div>
-              <h4 class="font-bold">Alex Thompson</h4>
-              <p class="text-secondary-500 dark:text-secondary-400 text-sm">CTO, FutureTech Solutions</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- CTA Section -->
-  <section id="contact" class="relative py-20 lg:py-32 bg-primary-600 text-white overflow-hidden">
-    <div class="absolute inset-0 opacity-10">
-      <div class="absolute -top-40 -left-40 w-80 h-80 bg-white rounded-full"></div>
-      <div class="absolute top-10 right-10 w-40 h-40 bg-white rounded-full"></div>
-      <div class="absolute bottom-10 left-1/2 w-60 h-60 bg-white rounded-full"></div>
-    </div>
-    
-    <div class="container mx-auto px-4 relative z-10">
-      <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Digital Experience?</h2>
-        <p class="text-lg md:text-xl text-primary-100 mb-10 leading-relaxed">
-          Let's discuss how our solutions can help your business thrive in the digital landscape.
-        </p>
-        
-        <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-          <!-- Contact Form -->
-          <div class="bg-white dark:bg-secondary-800 rounded-2xl p-8 shadow-2xl">
-            <h3 class="text-xl font-bold mb-6 text-secondary-800 dark:text-white">Get in Touch</h3>
-            <form>
-              <div class="mb-4">
-                <label class="block text-secondary-600 dark:text-secondary-300 text-sm font-medium mb-2" for="name">Name</label>
-                <input type="text" id="name" class="w-full px-4 py-2 border border-secondary-300 dark:border-secondary-600 rounded-lg bg-white dark:bg-secondary-700 text-secondary-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500" placeholder="Your name">
-              </div>
-              <div class="mb-4">
-                <label class="block text-secondary-600 dark:text-secondary-300 text-sm font-medium mb-2" for="email">Email</label>
-                <input type="email" id="email" class="w-full px-4 py-2 border border-secondary-300 dark:border-secondary-600 rounded-lg bg-white dark:bg-secondary-700 text-secondary-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500" placeholder="Your email">
-              </div>
-              <div class="mb-6">
-                <label class="block text-secondary-600 dark:text-secondary-300 text-sm font-medium mb-2" for="message">Message</label>
-                <textarea id="message" rows="4" class="w-full px-4 py-2 border border-secondary-300 dark:border-secondary-600 rounded-lg bg-white dark:bg-secondary-700 text-secondary-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500" placeholder="How can we help you?"></textarea>
-              </div>
-              <button type="submit" class="w-full bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg transition-colors">Send Message</button>
-            </form>
+        <div class="extension-content">
+          <div class="extension-header">
+            <h3 class="extension-title">Curriculum Vitae Djinni</h3>
+            <div class="extension-badge">Active</div>
           </div>
           
-          <!-- Contact Info -->
-          <div class="flex flex-col justify-between">
-            <div>
-              <h3 class="text-xl font-bold mb-6">Contact Information</h3>
-              <div class="space-y-4 mb-8">
-                <div class="flex items-start">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-primary-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                  <div>
-                    <p class="font-medium">Email</p>
-                    <a href="mailto:info@appliefy.com" class="text-primary-200 hover:text-white transition-colors">info@appliefy.com</a>
-                  </div>
-                </div>
-                <div class="flex items-start">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-primary-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  <div>
-                    <p class="font-medium">Location</p>
-                    <p class="text-primary-200">Global operations with virtual offices</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Social Media -->
-            <div>
-              <h3 class="text-xl font-bold mb-4">Follow Us</h3>
-              <div class="flex space-x-4">
-                <a href="https://www.instagram.com/appliefy/" class="bg-primary-700 hover:bg-primary-800 w-10 h-10 rounded-full flex items-center justify-center transition-colors" aria-label="Instagram">
-                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
-                  </svg>
-                </a>
-                <a href="https://linkedin.com/company/appliefy" class="bg-primary-700 hover:bg-primary-800 w-10 h-10 rounded-full flex items-center justify-center transition-colors" aria-label="LinkedIn">
-                  <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
-                    <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
-                    <circle cx="4" cy="4" r="2" stroke="none"></circle>
-                  </svg>
-                </a>
-              </div>
-            </div>
-            
-            <!-- Newsletter Subscription -->
-            <div id="subscribe" class="mt-8 bg-primary-700 rounded-2xl p-6">
-              <h3 class="text-xl font-bold mb-4">Stay Updated</h3>
-              <p class="text-primary-200 mb-4">Subscribe to our newsletter for the latest product updates and news.</p>
-              <form class="flex">
-                <input type="email" placeholder="Your email address" class="flex-grow px-4 py-2 rounded-l-lg text-secondary-800 focus:outline-none">
-                <button type="submit" class="bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded-r-lg transition-colors">Subscribe</button>
-              </form>
-            </div>
+          <p class="extension-description">
+            This extension simplifies the CV generation process on Djinni. With just one click on the "Generate CV" button, it automatically creates a professionally formatted PDF file with all your information in the form of a ready-to-use CV.
+          </p>
+          
+          <div class="tag-list">
+            <span class="tag">PDF Generation</span>
+            <span class="tag">CV Builder</span>
+            <span class="tag">Professional Tools</span>
           </div>
+          
+          <div class="extension-actions">
+            <a href="https://chrome.google.com/webstore/detail/curriculum-vitae-djinni/fanbdaoeaeofkikacmfbbkeoobjnoepp" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              Install from Chrome Web Store
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Coming Soon Extension -->
+      <div class="extension-card">
+        <div class="extension-icon">
+          <div class="extension-icon-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+        </div>
+        
+        <div class="extension-content">
+          <div class="extension-header">
+            <h3 class="extension-title">AI Productivity Assistant</h3>
+            <div class="extension-badge inactive">Coming Soon</div>
+          </div>
+          
+          <p class="extension-description">
+            Our upcoming AI Productivity Assistant will revolutionize how you work online. This powerful extension leverages artificial intelligence to automate routine tasks, summarize content, and provide intelligent suggestions as you browse.
+          </p>
+          
+          <div class="tag-list">
+            <span class="tag">AI-Powered</span>
+            <span class="tag">Productivity</span>
+            <span class="tag">Automation</span>
+          </div>
+          
+          <div class="extension-actions">
+            <button class="btn btn-disabled">Coming Soon</button>
+            <a href="#notify" class="notify-link">Get notified on release</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Development Services -->
+  <section class="development">
+    <div class="container">
+      <div class="development-grid">
+        <div class="dev-content">
+          <h2>Custom Extension <span class="highlight">Development</span></h2>
+          <p>Need a tailor-made extension for your specific business requirements? Our team specializes in creating custom Chrome extensions that can streamline your workflow, enhance productivity, or solve unique challenges.</p>
+          
+          <ul class="dev-features">
+            <li class="dev-feature">
+              <svg class="feature-icon" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>End-to-end development from concept to deployment</span>
+            </li>
+            <li class="dev-feature">
+              <svg class="feature-icon" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Modern technologies and best practices</span>
+            </li>
+            <li class="dev-feature">
+              <svg class="feature-icon" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Security and performance optimization</span>
+            </li>
+            <li class="dev-feature">
+              <svg class="feature-icon" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Ongoing maintenance and updates</span>
+            </li>
+          </ul>
+          
+          <a href="index.html#contact" class="btn btn-primary">Contact Us for Custom Development</a>
+        </div>
+        
+        <div class="process-card">
+          <div class="process-header">
+            <h3 class="process-title">Our Development Process</h3>
+            <p>How we bring your extension ideas to life</p>
+          </div>
+          
+          <ol class="process-steps">
+            <li class="process-step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h4>Discovery & Planning</h4>
+                <p>Understanding your needs and defining project requirements</p>
+              </div>
+            </li>
+            <li class="process-step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h4>Design & Architecture</h4>
+                <p>Creating UI mockups and technical architecture</p>
+              </div>
+            </li>
+            <li class="process-step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h4>Development</h4>
+                <p>Building the extension with regular progress updates</p>
+              </div>
+            </li>
+            <li class="process-step">
+              <div class="step-number">4</div>
+              <div class="step-content">
+                <h4>Testing & QA</h4>
+                <p>Rigorous quality assurance and bug fixing</p>
+              </div>
+            </li>
+            <li class="process-step">
+              <div class="step-number">5</div>
+              <div class="step-content">
+                <h4>Deployment & Support</h4>
+                <p>Publication to Chrome Web Store and ongoing maintenance</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Newsletter Section -->
+  <section id="notify" class="newsletter">
+    <div class="container">
+      <h2>Stay Updated on New <span class="highlight">Extensions</span></h2>
+      <p>Subscribe to our newsletter to be the first to know about our upcoming extensions, updates, and special offers.</p>
+      
+      <div class="newsletter-form">
+        <div class="form-control">
+          <input type="email" class="newsletter-input" placeholder="Your email address">
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </div>
+        <p class="policy-text">We respect your privacy. Unsubscribe at any time.</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-container">
+      <a href="./" class="logo">
+        <img src="img/logo.png" alt="Appliefy Logo" style="height: 2rem;">
+      </a>
+      <p>© 2025 Appliefy. All rights reserved.</p>
+      <div class="social-links">
+        <a href="mailto:info@appliefy.com" aria-label="Email">
+          <svg class="social-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/appliefy/" aria-label="Instagram">
+          <svg class="social-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+          </svg>
+        </a>
+        <a href="https://linkedin.com/company/appliefy" aria-label="LinkedIn">
+          <svg class="social-icon" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" viewBox="0 0 24 24">
+            <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+            <circle cx="4" cy="4" r="2" stroke="none"></circle>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- JavaScript -->
+  <script>
+    // Mobile menu toggle
+    const mobileToggle = document.querySelector('.mobile-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const mobileMenuClose = document.querySelector('.mobile-menu-close');
+    
+    mobileToggle.addEventListener('click', () => {
+      mobileMenu.classList.add('active');
+    });
+    
+    mobileMenuClose.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+    });
+    
+    // Close mobile menu when clicking on a menu item
+    const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
+    mobileNavItems.forEach(item => {
+      item.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
