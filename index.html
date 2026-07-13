@@ -1,157 +1,816 @@
-<html/>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Appliefy — Consulting solutions</title>
-
-  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Appliefy — Consulting solutions</title>
 <meta name="title" content="Appliefy — Consulting solutions">
-<meta name="description" content="Appliefy is a group of companies that has been specializing in the creation of products and services on the Internet for over 3 years.">
-<link rel="icon" type="image/png" href="img/favicon.png" />
+<meta name="description" content="Appliefy is a group of companies specializing in the creation of products and services on the Internet.">
+<link rel="icon" type="image/png" href="img/favicon.png">
+
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="http://appliefy.com/">
 <meta property="og:title" content="Appliefy — Consulting solutions">
-<meta property="og:description" content="Appliefy is a group of companies that has been specializing in the creation of products and services on the Internet for over 3 years.">
+<meta property="og:description" content="Appliefy is a group of companies specializing in the creation of products and services on the Internet.">
 <meta property="og:image" content="https://appliefy.com/tild6431-3437-4137-a436-316665343639/Qwerty12.png">
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="http://appliefy.com/">
 <meta property="twitter:title" content="Appliefy — Consulting solutions">
-<meta property="twitter:description" content="Appliefy is a group of companies that has been specializing in the creation of products and services on the Internet for over 3 years.">
+<meta property="twitter:description" content="Appliefy is a group of companies specializing in the creation of products and services on the Internet.">
 <meta property="twitter:image" content="https://appliefy.com/tild6431-3437-4137-a436-316665343639/Qwerty12.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============ Tokens (light) ============ */
+:root{
+  --bg:#f2f6fd;
+  --azure:#4f8dfd;
+  --azure-deep:#2f6bec;
+  --sky:#2e6bf0;
+  --frost:#0d1b38;
+  --muted:rgba(13,27,56,.64);
+  --faint:rgba(13,27,56,.42);
+  --mint:#0ea371;
+  --amber:#d98a0c;
+  --line:rgba(70,120,230,.18);
+  --glass:linear-gradient(150deg,rgba(255,255,255,.8),rgba(255,255,255,.42) 45%,rgba(224,236,255,.55));
+  --font-d:"Space Grotesk",sans-serif;
+  --font-b:"Inter",sans-serif;
+  --font-m:"JetBrains Mono",monospace;
+  --r-lg:28px;
+  --r-md:18px;
+  --r-sm:12px;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--frost);
+  font-family:var(--font-b);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--azure-deep);color:#fff}
+a{color:inherit;text-decoration:none}
+img,svg{display:block}
+:focus-visible{outline:2px solid var(--sky);outline-offset:3px;border-radius:6px}
+
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:#eaf1fc}
+::-webkit-scrollbar-thumb{background:rgba(70,120,230,.3);border-radius:99px}
+::-webkit-scrollbar-thumb:hover{background:rgba(70,120,230,.45)}
+
+.container{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* ============ Ambient scene ============ */
+.scene{position:fixed;inset:0;z-index:-1;overflow:hidden;background:
+  radial-gradient(120% 90% at 50% -10%,#dcE9ff 0%,var(--bg) 55%)}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.6;will-change:transform}
+.orb-1{width:620px;height:620px;top:-200px;left:-140px;
+  background:radial-gradient(circle at 35% 35%,#a9c6ff,transparent 65%);
+  animation:drift1 30s ease-in-out infinite alternate}
+.orb-2{width:520px;height:520px;top:18%;right:-180px;
+  background:radial-gradient(circle at 60% 40%,#bcd3ff,transparent 62%);
+  animation:drift2 36s ease-in-out infinite alternate}
+.orb-3{width:560px;height:560px;bottom:-240px;left:32%;
+  background:radial-gradient(circle at 50% 50%,#d3e2ff,transparent 65%);
+  animation:drift3 42s ease-in-out infinite alternate}
+@keyframes drift1{to{transform:translate(90px,70px) scale(1.08)}}
+@keyframes drift2{to{transform:translate(-70px,110px) scale(1.12)}}
+@keyframes drift3{to{transform:translate(60px,-80px)}}
+
+.grid-bg{position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(70,120,230,.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(70,120,230,.06) 1px,transparent 1px);
+  background-size:56px 56px;
+  -webkit-mask-image:radial-gradient(ellipse 95% 62% at 50% 0%,#000 25%,transparent 78%);
+          mask-image:radial-gradient(ellipse 95% 62% at 50% 0%,#000 25%,transparent 78%)}
+.noise{position:absolute;inset:0;opacity:.03;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ============ Glass primitives ============ */
+.glass{
+  position:relative;
+  background:var(--glass);
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  -webkit-backdrop-filter:blur(22px) saturate(160%);
+          backdrop-filter:blur(22px) saturate(160%);
+  box-shadow:0 24px 60px -28px rgba(38,74,160,.3),inset 0 1px 0 rgba(255,255,255,.9);
+}
+.glass::after{
+  content:"";position:absolute;top:0;left:8%;right:8%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.95),transparent);
+  pointer-events:none;
+}
+@supports not (backdrop-filter:blur(1px)){
+  .glass{background:rgba(255,255,255,.94)}
+}
+.glow-track::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(440px circle at var(--mx,50%) var(--my,50%),rgba(64,120,245,.12),transparent 62%);
+  opacity:0;transition:opacity .45s ease;
+}
+.glow-track:hover::before{opacity:1}
+
+/* ============ Buttons & chips ============ */
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-d);
+  font-weight:600;font-size:15px;letter-spacing:.01em;padding:13px 26px;
+  border-radius:99px;border:1px solid transparent;cursor:pointer;
+  transition:transform .25s ease,box-shadow .25s ease,background .25s ease,border-color .25s ease;
+  white-space:nowrap}
+.btn svg{width:17px;height:17px;transition:transform .25s ease}
+.btn:hover svg{transform:translateX(3px)}
+.btn-primary{color:#fff;
+  background:linear-gradient(135deg,#6da1ff,var(--azure) 45%,var(--azure-deep));
+  box-shadow:0 12px 34px -10px rgba(47,107,236,.55),inset 0 1px 0 rgba(255,255,255,.35)}
+.btn-primary:hover{transform:translateY(-2px);
+  box-shadow:0 18px 44px -10px rgba(47,107,236,.65),inset 0 1px 0 rgba(255,255,255,.35)}
+.btn-ghost{color:var(--frost);background:rgba(255,255,255,.55);border-color:var(--line);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.btn-ghost:hover{transform:translateY(-2px);background:#fff;border-color:rgba(70,120,230,.4)}
+.btn-soon{color:var(--faint);background:rgba(255,255,255,.4);border-color:var(--line);cursor:default}
+.btn-sm{padding:10px 20px;font-size:14px}
+.btn-lg{padding:16px 34px;font-size:17px}
+
+.chip{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-m);
+  font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+  padding:7px 14px;border-radius:99px;border:1px solid var(--line);
+  background:rgba(255,255,255,.5)}
+.chip i{width:7px;height:7px;border-radius:50%;flex:none}
+.chip-live{color:#066e4c;border-color:rgba(14,163,113,.35)}
+.chip-live i{background:var(--mint);box-shadow:0 0 8px rgba(14,163,113,.7);animation:pulse 2.2s infinite}
+.chip-soon{color:#8a5a06;border-color:rgba(217,138,12,.35)}
+.chip-soon i{background:var(--amber);box-shadow:0 0 8px rgba(217,138,12,.6)}
+.chip-serv{color:#2456c4;border-color:rgba(70,120,230,.38)}
+.chip-serv i{background:var(--azure);box-shadow:0 0 8px rgba(79,141,253,.7)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* ============ Nav ============ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .35s ease,border-color .35s ease,-webkit-backdrop-filter .35s ease,backdrop-filter .35s ease;border-bottom:1px solid transparent}
+.nav.scrolled{background:rgba(255,255,255,.66);border-color:var(--line);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%)}
+.nav-inner{max-width:1180px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:32px}
+.logo{display:flex;align-items:center}
+.logo-img{height:48px;width:auto}
+.logo-img.sm{height:38px}
+.nav-links{display:flex;gap:28px;margin:0 auto}
+.nav-links a{font-size:14.5px;font-weight:500;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--frost)}
+.nav-right{display:flex;align-items:center;gap:14px;margin-left:auto}
+.soc{display:grid;place-items:center;width:38px;height:38px;border-radius:11px;
+  border:1px solid var(--line);background:rgba(255,255,255,.55);color:var(--muted);
+  transition:color .2s,border-color .2s,transform .2s,background .2s}
+.soc:hover{color:var(--sky);border-color:rgba(70,120,230,.42);background:#fff;transform:translateY(-2px)}
+.soc svg{width:17px;height:17px}
+
+.burger{display:none;width:42px;height:42px;border-radius:11px;border:1px solid var(--line);
+  background:rgba(255,255,255,.55);cursor:pointer;position:relative}
+.burger span{position:absolute;left:12px;right:12px;height:2px;border-radius:2px;background:var(--frost);transition:transform .3s,top .3s,opacity .3s}
+.burger span:nth-child(1){top:16px}
+.burger span:nth-child(2){top:24px}
+.burger.open span:nth-child(1){top:20px;transform:rotate(45deg)}
+.burger.open span:nth-child(2){top:20px;transform:rotate(-45deg)}
+
+.mobile-menu{position:fixed;top:82px;left:16px;right:16px;z-index:49;padding:22px;
+  display:flex;flex-direction:column;gap:6px;border-radius:22px;
+  transform:translateY(-12px) scale(.98);opacity:0;pointer-events:none;
+  transition:transform .3s ease,opacity .3s ease}
+.mobile-menu.open{transform:none;opacity:1;pointer-events:auto}
+.mobile-menu a{padding:12px 10px;border-radius:12px;font-weight:500;color:var(--muted)}
+.mobile-menu a:hover{background:rgba(46,110,240,.07);color:var(--frost)}
+.mobile-menu .btn{justify-content:center;margin-top:10px;color:#fff}
+
+/* ============ Hero ============ */
+.hero{min-height:100svh;display:grid;place-items:center;text-align:center;
+  padding:150px 0 90px;position:relative}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-m);
+  font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+  padding:9px 18px;border-radius:99px;border:1px solid var(--line);
+  background:rgba(255,255,255,.5);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);margin-bottom:30px}
+.pulse-dot{width:8px;height:8px;border-radius:50%;background:var(--sky);position:relative;flex:none}
+.pulse-dot::after{content:"";position:absolute;inset:-5px;border-radius:50%;
+  border:1px solid var(--sky);animation:ring 2.4s ease-out infinite}
+@keyframes ring{0%{transform:scale(.4);opacity:1}100%{transform:scale(1.5);opacity:0}}
+
+.hero h1{font-family:var(--font-d);font-weight:700;
+  font-size:clamp(2.7rem,6.4vw,4.8rem);line-height:1.04;letter-spacing:-.035em;
+  max-width:900px;margin:0 auto 26px}
+.grad-text{background:linear-gradient(92deg,#1e50c8 0%,#3d7bf7 45%,#1f8fd8 80%,#2e6bf0 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{max-width:640px;margin:0 auto 40px;color:var(--muted);font-size:17.5px}
+.hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:44px}
+.hero-chips{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+.scroll-hint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
+  width:24px;height:40px;border:1.5px solid rgba(70,120,230,.35);border-radius:14px;opacity:.8}
+.scroll-hint::after{content:"";position:absolute;top:7px;left:50%;width:4px;height:8px;
+  margin-left:-2px;border-radius:4px;background:var(--sky);animation:wheel 2s ease-in-out infinite}
+@keyframes wheel{0%,100%{transform:translateY(0);opacity:1}70%{transform:translateY(12px);opacity:0}}
+
+/* ============ Marquee ============ */
+.marquee{overflow:hidden;padding:26px 0;border-top:1px solid rgba(70,120,230,.14);
+  border-bottom:1px solid rgba(70,120,230,.14);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee-track{display:flex;width:max-content;animation:scrollX 32s linear infinite}
+.marquee-group{display:flex;align-items:center;gap:34px;padding-right:34px}
+.marquee-group span{font-family:var(--font-m);font-size:13px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--faint);white-space:nowrap}
+.marquee-group i{color:var(--azure);font-style:normal;font-size:11px}
+@keyframes scrollX{to{transform:translateX(-50%)}}
+
+/* ============ Sections ============ */
+.section{padding:110px 0}
+.section-head{max-width:640px;margin-bottom:56px}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.overline{font-family:var(--font-m);font-size:12.5px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--sky);display:inline-flex;align-items:center;gap:12px;margin-bottom:16px}
+.overline::before{content:"";width:26px;height:1px;background:linear-gradient(90deg,transparent,var(--sky))}
+.section-head h2{font-family:var(--font-d);font-weight:700;letter-spacing:-.03em;
+  font-size:clamp(1.9rem,4vw,2.9rem);line-height:1.12}
+.section-head p{color:var(--muted);margin-top:14px}
+
+/* ============ Products ============ */
+.product{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(32px,4.5vw,64px);
+  align-items:center;padding:clamp(30px,4.5vw,60px);margin-bottom:30px;overflow:hidden}
+.product-rev .product-info{order:2}
+.product-rev .product-visual{order:1}
+.product-meta{display:flex;align-items:center;gap:14px;margin-bottom:22px;flex-wrap:wrap}
+.product h3{font-family:var(--font-d);font-weight:700;letter-spacing:-.02em;
+  font-size:clamp(1.7rem,3vw,2.3rem);margin-bottom:16px}
+.product p{color:var(--muted);margin-bottom:30px;max-width:480px}
+.product-visual{position:relative;display:grid;place-items:center;min-height:420px}
+
+/* glow halo behind mockups */
+.halo{position:absolute;width:78%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,rgba(64,120,245,.16),transparent 66%);filter:blur(8px)}
+
+.float-chip{position:absolute;z-index:3;display:flex;align-items:center;gap:8px;
+  font-family:var(--font-m);font-size:11.5px;color:var(--frost);
+  padding:9px 15px;border-radius:99px;border:1px solid var(--line);
+  background:rgba(255,255,255,.78);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  box-shadow:0 14px 30px -12px rgba(38,74,160,.35);animation:bob 6s ease-in-out infinite}
+.float-chip .dot{width:7px;height:7px;border-radius:50%;background:var(--mint);box-shadow:0 0 8px rgba(14,163,113,.7)}
+.fc-1{top:12%;left:0}
+.fc-2{bottom:14%;right:2%;animation-delay:-3s}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-11px)}}
+
+.device{position:relative;z-index:2;will-change:transform;transition:transform .3s ease}
+
+/* ---- Fooddy phone ---- */
+.phone{width:288px;border-radius:44px;padding:11px;
+  background:linear-gradient(160deg,rgba(255,255,255,.95),rgba(214,228,252,.75) 45%,rgba(192,212,246,.6));
+  border:1px solid rgba(150,180,235,.6);
+  box-shadow:0 40px 90px -30px rgba(38,74,160,.45),inset 0 1px 0 rgba(255,255,255,.95)}
+.phone-screen{border-radius:34px;overflow:hidden;padding:18px 16px 22px;
+  background:linear-gradient(175deg,#fbfdff,#edf3fd 70%);
+  border:1px solid rgba(120,160,240,.22);min-height:520px;
+  display:flex;flex-direction:column;gap:14px}
+.p-status{display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--font-m);font-size:11px;color:var(--faint)}
+.p-sig{display:flex;gap:3px;align-items:flex-end}
+.p-sig i{width:3px;border-radius:2px;background:var(--sky)}
+.p-sig i:nth-child(1){height:5px}.p-sig i:nth-child(2){height:8px}.p-sig i:nth-child(3){height:11px}
+.p-brand{font-family:var(--font-d);font-weight:700;font-size:21px;letter-spacing:-.01em}
+.p-brand b{color:var(--sky);font-weight:700}
+.p-search{display:flex;align-items:center;gap:9px;padding:11px 15px;border-radius:14px;
+  border:1px solid rgba(46,110,240,.18);background:rgba(46,110,240,.06);
+  font-size:13.5px;color:var(--muted)}
+.p-search svg{width:15px;height:15px;color:var(--sky)}
+.p-search .caret{width:1.5px;height:14px;background:var(--sky);animation:blink 1.1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.p-food{border-radius:18px;padding:15px;border:1px solid rgba(120,160,240,.25);
+  background:linear-gradient(150deg,#ffffff,rgba(255,255,255,.6));
+  box-shadow:0 10px 24px -14px rgba(38,74,160,.3)}
+.p-food-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+.p-food-top strong{font-family:var(--font-d);font-size:16.5px}
+.p-food-top span{font-family:var(--font-m);font-size:10.5px;color:var(--faint)}
+.idx{margin-bottom:12px}
+.idx:last-child{margin-bottom:0}
+.idx-line{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.idx-line b{font-family:var(--font-m);font-weight:500;color:#0a8a5c}
+.bar{height:6px;border-radius:6px;background:rgba(20,45,110,.1);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:6px;
+  background:linear-gradient(90deg,#10b981,#22a7e8)}
+.p-rings{display:flex;justify-content:space-between;padding:4px 6px 0;margin-top:auto}
+.ring-item{display:grid;justify-items:center;gap:8px}
+.ring{--p:50;--c:var(--sky);position:relative;width:62px;aspect-ratio:1;border-radius:50%;
+  background:conic-gradient(var(--c) calc(var(--p)*1%),rgba(20,45,110,.12) 0);
+  display:grid;place-items:center}
+.ring::before{content:"";position:absolute;inset:6px;border-radius:50%;background:#fbfdff}
+.ring span{position:relative;font-family:var(--font-m);font-size:11px;color:var(--frost)}
+.ring-item em{font-style:normal;font-family:var(--font-m);font-size:10px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+
+/* ---- Applieshop storefront ---- */
+.shop{width:min(430px,100%);border-radius:26px;padding:22px;
+  background:linear-gradient(160deg,rgba(255,255,255,.92),rgba(220,232,252,.65));
+  border:1px solid rgba(150,180,235,.55);
+  box-shadow:0 40px 90px -30px rgba(38,74,160,.45),inset 0 1px 0 rgba(255,255,255,.95)}
+.shop-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.shop-head strong{font-family:var(--font-d);font-size:18px;letter-spacing:-.01em}
+.shop-cart{position:relative;display:grid;place-items:center;width:40px;height:40px;
+  border-radius:12px;border:1px solid var(--line);background:rgba(46,110,240,.07);color:var(--sky)}
+.shop-cart svg{width:18px;height:18px}
+.shop-cart b{position:absolute;top:-6px;right:-6px;width:18px;height:18px;border-radius:50%;
+  display:grid;place-items:center;font-family:var(--font-m);font-size:10px;color:#fff;
+  background:linear-gradient(135deg,#5d97ff,var(--azure-deep));
+  box-shadow:0 4px 12px -2px rgba(47,107,236,.7)}
+.shop-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.shop-item{border-radius:18px;padding:18px 16px;border:1px solid rgba(120,160,240,.22);
+  background:linear-gradient(155deg,#ffffff,rgba(255,255,255,.55));
+  display:grid;gap:12px;transition:transform .3s ease,border-color .3s ease}
+.shop-item:hover{transform:translateY(-4px);border-color:rgba(70,120,230,.45)}
+.shop-ic{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;color:#fff;
+  background:linear-gradient(140deg,#5d97ff,var(--azure-deep));
+  box-shadow:0 10px 22px -8px rgba(47,107,236,.55)}
+.shop-ic svg{width:21px;height:21px}
+.shop-item span{font-size:13.5px;font-weight:500}
+.shop-item em{font-style:normal;font-family:var(--font-m);font-size:12px;color:var(--sky)}
+
+/* ---- Extensions browser ---- */
+.browser{width:min(470px,100%);border-radius:22px;overflow:hidden;
+  border:1px solid rgba(150,180,235,.55);
+  background:linear-gradient(170deg,#ffffff,#f1f6fe 75%);
+  box-shadow:0 40px 90px -30px rgba(38,74,160,.45),inset 0 1px 0 rgba(255,255,255,.95)}
+.browser-bar{display:flex;align-items:center;gap:14px;padding:13px 16px;
+  border-bottom:1px solid var(--line);background:rgba(46,110,240,.05)}
+.b-dots{display:flex;gap:6px}
+.b-dots i{width:10px;height:10px;border-radius:50%;background:rgba(20,45,110,.15)}
+.b-dots i:first-child{background:rgba(255,95,86,.85)}
+.b-dots i:nth-child(2){background:rgba(255,189,46,.9)}
+.b-dots i:nth-child(3){background:rgba(39,201,63,.85)}
+.b-url{flex:1;font-family:var(--font-m);font-size:11.5px;color:var(--faint);
+  padding:8px 14px;border-radius:9px;border:1px solid var(--line);
+  background:rgba(255,255,255,.75)}
+.b-puz{color:var(--sky)}
+.b-puz svg{width:17px;height:17px}
+.browser-body{padding:18px;display:grid;gap:12px}
+.ext-row{display:flex;align-items:center;gap:14px;padding:14px;border-radius:15px;
+  border:1px solid rgba(120,160,240,.22);background:rgba(46,110,240,.035);
+  transition:border-color .3s,background .3s}
+.ext-row:hover{border-color:rgba(70,120,230,.42);background:rgba(46,110,240,.07)}
+.ext-ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:#fff;flex:none}
+.ext-ic svg{width:19px;height:19px}
+.g1{background:linear-gradient(140deg,#5d97ff,var(--azure-deep));box-shadow:0 8px 20px -6px rgba(47,107,236,.55)}
+.g2{background:linear-gradient(140deg,#29b6f0,#1a7fd0);box-shadow:0 8px 20px -6px rgba(35,132,216,.5)}
+.g3{background:linear-gradient(140deg,#7d8bff,#4a56d8);box-shadow:0 8px 20px -6px rgba(90,100,225,.5)}
+.ext-txt{flex:1;display:grid;gap:7px}
+.ext-txt b{font-family:var(--font-d);font-weight:600;font-size:14px}
+.ext-txt span{height:7px;border-radius:6px;background:rgba(20,45,110,.1);width:72%}
+.toggle{width:38px;height:22px;border-radius:99px;position:relative;flex:none;
+  background:rgba(20,45,110,.16);transition:background .3s}
+.toggle i{position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;
+  background:#fff;box-shadow:0 1px 3px rgba(20,45,110,.35);transition:left .3s}
+.toggle.on{background:linear-gradient(135deg,#5d97ff,var(--azure-deep));
+  box-shadow:0 0 14px -2px rgba(47,107,236,.6)}
+.toggle.on i{left:19px}
+
+/* ============ Expertise ============ */
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.why-card{padding:30px 26px;border-radius:22px}
+.why-ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;
+  color:var(--sky);border:1px solid rgba(70,120,230,.22);background:rgba(46,110,240,.07);margin-bottom:20px}
+.why-ic svg{width:22px;height:22px}
+.why-card h4{font-family:var(--font-d);font-weight:600;font-size:17px;
+  letter-spacing:-.01em;margin-bottom:10px}
+.why-card p{color:var(--muted);font-size:14.5px}
+
+/* ============ CTA ============ */
+.cta-panel{padding:clamp(56px,7vw,96px) 32px;text-align:center;overflow:hidden}
+.cta-panel::before{
+  background:radial-gradient(560px circle at var(--mx,50%) var(--my,20%),rgba(64,120,245,.13),transparent 62%)}
+.cta-panel h2{font-family:var(--font-d);font-weight:700;letter-spacing:-.03em;
+  font-size:clamp(1.9rem,4.2vw,3rem);margin-bottom:16px}
+.cta-panel>p{color:var(--muted);max-width:520px;margin:0 auto 36px}
+.cta-mail{font-family:var(--font-m);font-size:13px;color:var(--faint);margin-top:20px}
+.cta-mail a{color:var(--sky);border-bottom:1px solid rgba(46,110,240,.35);transition:color .2s,border-color .2s}
+.cta-mail a:hover{color:var(--azure-deep);border-color:var(--azure-deep)}
+
+/* ============ Footer ============ */
+footer{border-top:1px solid rgba(70,120,230,.16);padding:38px 0;margin-top:40px;
+  background:rgba(255,255,255,.35)}
+.footer-inner{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.footer-inner .copy{font-size:13.5px;color:var(--faint)}
+.footer-inner .socials{display:flex;gap:12px;margin-left:auto}
+
+/* ============ Reveal ============ */
+.reveal{opacity:0;transform:translateY(28px);
+  transition:opacity .8s cubic-bezier(.2,.65,.3,1),transform .8s cubic-bezier(.2,.65,.3,1)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* ============ Responsive ============ */
+@media(max-width:1020px){
+  .why-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:880px){
+  .nav-links{display:none}
+  .nav-right .soc{display:none}
+  .burger{display:block}
+  .product{grid-template-columns:1fr}
+  .product-rev .product-info{order:1}
+  .product-rev .product-visual{order:2}
+  .product-visual{min-height:0;padding:14px 0 6px}
+  .fc-1{top:0;left:2%}
+  .fc-2{bottom:0;right:2%}
+}
+@media(max-width:560px){
+  .section{padding:80px 0}
+  .why-grid{grid-template-columns:1fr}
+  .hero{padding-top:130px}
+  .hero-actions .btn{width:100%;justify-content:center}
+  .phone{width:256px}
+  .nav-right .btn{display:none}
+  .logo-img{height:40px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important}
+  .reveal{opacity:1;transform:none}
+  .marquee-track{animation:none}
+}
+</style>
 </head>
 <body>
- <header class="text-gray-600 body-font">
-<div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-<a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-<img width="200px" height="200px" src="img/logo.png" alt="appliefy logo">
-</a>
 
-<span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-<a  href="mailto:info@appliefy.com" class="ml-3 text-gray-500">
-<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-</a>
-<a  href="https://www.instagram.com/appliefy/" class="ml-3 text-gray-500">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
- <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
- <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
-</svg>
-</a>
-<a href="https://linkedin.com/company/appliefy" class="ml-3 text-gray-500">
-<svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
- <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
- <circle cx="4" cy="4" r="2" stroke="none"></circle>
-</svg>
-</a>
-</span>
+<!-- Ambient background -->
+<div class="scene" aria-hidden="true">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="grid-bg"></div>
+  <div class="noise"></div>
 </div>
 
+<!-- ============ Nav ============ -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="logo" href="./" aria-label="Appliefy home">
+      <img class="logo-img" src="img/logo.png" alt="Appliefy">
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#products">Products</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <a class="soc" href="mailto:info@appliefy.com" aria-label="Email">
+        <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/></svg>
+      </a>
+      <a class="soc" href="https://www.instagram.com/appliefy/" aria-label="Instagram">
+        <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zm1.5-4.87h.01"/></svg>
+      </a>
+      <a class="soc" href="https://linkedin.com/company/appliefy" aria-label="LinkedIn">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a class="btn btn-primary btn-sm" href="mailto:info@appliefy.com">Get in touch</a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
 </header>
-<!-- section two -->
-<section class="text-gray-600 body-font">
-<div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-<div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-<h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">About  Appliefy
 
-</h1>
-<p class="mb-8 leading-relaxed">Appliefy is a group of companies that has been specializing in the creation of products and services on the Internet for over 3 years. 
-With significant experience, timely results and development, it successfully cooperates with its former clients and continues to attract new ones. Our team consists of industry and technical experts who offer world class consulting solutions to our clients. The core strength of our consultants is to work seamlessly with client organizations to optimize existing resources and successfully implement improvement strategies.</p>
-<div class="flex justify-center">
+<div class="mobile-menu glass" id="mobileMenu">
+  <a href="#about">About</a>
+  <a href="#products">Products</a>
+  <a href="#expertise">Expertise</a>
+  <a href="#contact">Contact</a>
+  <a class="btn btn-primary" href="mailto:info@appliefy.com">Get in touch</a>
+</div>
 
-</div>
-</div>
-<div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-<img class="object-cover object-center rounded" alt="hero" src="img/3.svg">
-</div>
-</div>
+<main>
+
+<!-- ============ Hero ============ -->
+<section class="hero" id="about">
+  <div class="container">
+    <div class="hero-badge reveal"><span class="pulse-dot"></span> Appliefy · group of companies</div>
+    <h1 class="reveal d1">We build <span class="grad-text">products&nbsp;&amp;&nbsp;services</span><br>for the Internet</h1>
+    <p class="hero-sub reveal d2">Appliefy has been specializing in the creation of Internet products and services for over 3 years — delivering timely results, growing with long-standing clients and attracting new ones. Our consultants work seamlessly with your team to optimize existing resources and implement improvement strategies.</p>
+    <div class="hero-actions reveal d3">
+      <a class="btn btn-primary" href="#products">Explore products
+        <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="mailto:info@appliefy.com">Contact us</a>
+    </div>
+    <div class="hero-chips reveal d4">
+      <span class="chip">Web applications</span>
+      <span class="chip">Chrome extensions</span>
+      <span class="chip">E-commerce</span>
+      <span class="chip">IT consulting</span>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true"></div>
 </section>
 
-<section class="text-gray-600 body-font">
-<div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-<div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
-<img class="object-cover object-center rounded" alt="hero" src="img/2.svg">
+<!-- ============ Marquee ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="marquee-group">
+      <span>Web applications</span><i>✦</i>
+      <span>Chrome extensions</span><i>✦</i>
+      <span>E-commerce</span><i>✦</i>
+      <span>Nutrition tech</span><i>✦</i>
+      <span>UX / UI</span><i>✦</i>
+      <span>Consulting solutions</span><i>✦</i>
+    </div>
+    <div class="marquee-group">
+      <span>Web applications</span><i>✦</i>
+      <span>Chrome extensions</span><i>✦</i>
+      <span>E-commerce</span><i>✦</i>
+      <span>Nutrition tech</span><i>✦</i>
+      <span>UX / UI</span><i>✦</i>
+      <span>Consulting solutions</span><i>✦</i>
+    </div>
+  </div>
 </div>
-<div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-<h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
-Fooddy Today
-</h1>
-<p class="mb-8 leading-relaxed">An easy way to find out the nutritional value, insulin index and glycemic index of the products. Healthy balanced diet is a form of prevention and treatment of lots of diseases, and as a means of maintaining good state of body and mind.</p>
-<div class="flex justify-center">
-<form action="https://fooddy.appliefy.com"></form>
-<button class="inline-flex text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg" onclick="location.href='https://fooddy.appliefy.com'">Try</button>
-</form>
 
-</div>
-</div>
-</div>
+<!-- ============ Products ============ -->
+<section class="section" id="products">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="overline">Our products</span>
+      <h2>Made by Appliefy</h2>
+      <p>Three directions, one team — from a nutrition service to e-commerce and browser tooling.</p>
+    </div>
+
+    <!-- Fooddy -->
+    <article class="product glass glow-track reveal">
+      <div class="product-info">
+        <div class="product-meta">
+          <span class="chip chip-live"><i></i>Live</span>
+          <span class="chip">fooddy.appliefy.com</span>
+        </div>
+        <h3>Fooddy Today</h3>
+        <p>An easy way to find out the nutritional value, insulin index and glycemic index of products. A healthy, balanced diet is a form of prevention and treatment of many diseases — and a means of maintaining a good state of body and mind.</p>
+        <a class="btn btn-primary" href="https://fooddy.appliefy.com" target="_blank" rel="noopener">Try Fooddy
+          <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="product-visual">
+        <div class="halo" aria-hidden="true"></div>
+        <div class="float-chip fc-1" aria-hidden="true"><span class="dot"></span>GI 15 · Low</div>
+        <div class="float-chip fc-2" aria-hidden="true"><span class="dot"></span>Insulin index 8</div>
+        <div class="device phone" data-tilt aria-hidden="true">
+          <div class="phone-screen">
+            <div class="p-status"><span>9:41</span><span class="p-sig"><i></i><i></i><i></i></span></div>
+            <div class="p-brand">Fooddy <b>Today</b></div>
+            <div class="p-search">
+              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+              avocado<span class="caret"></span>
+            </div>
+            <div class="p-food">
+              <div class="p-food-top"><strong>Avocado</strong><span>160 kcal · 100 g</span></div>
+              <div class="idx">
+                <div class="idx-line"><span>Glycemic index</span><b>15 · low</b></div>
+                <div class="bar"><i style="width:15%"></i></div>
+              </div>
+              <div class="idx">
+                <div class="idx-line"><span>Insulin index</span><b>8 · low</b></div>
+                <div class="bar"><i style="width:8%"></i></div>
+              </div>
+            </div>
+            <div class="p-rings">
+              <div class="ring-item"><div class="ring" style="--p:12;--c:#3d7bf7"><span>2g</span></div><em>Protein</em></div>
+              <div class="ring-item"><div class="ring" style="--p:64;--c:#1ba7e0"><span>15g</span></div><em>Fats</em></div>
+              <div class="ring-item"><div class="ring" style="--p:28;--c:#6d76f0"><span>9g</span></div><em>Carbs</em></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Applieshop -->
+    <article class="product product-rev glass glow-track reveal">
+      <div class="product-info">
+        <div class="product-meta">
+          <span class="chip chip-soon"><i></i>Coming soon</span>
+        </div>
+        <h3>Applieshop</h3>
+        <p>An online store of mobile accessories offering a wide range of original, high-quality products — indispensable assistants in the daily use of your favorite gadgets, and an excellent gift idea.</p>
+        <button class="btn btn-soon" type="button" disabled>Launching soon</button>
+      </div>
+      <div class="product-visual">
+        <div class="halo" aria-hidden="true"></div>
+        <div class="device shop" data-tilt aria-hidden="true">
+          <div class="shop-head">
+            <strong>Applieshop</strong>
+            <span class="shop-cart">
+              <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M6 7h12l1 13H5L6 7z"/><path d="M9 10V7a3 3 0 0 1 6 0v3"/></svg>
+              <b>2</b>
+            </span>
+          </div>
+          <div class="shop-grid">
+            <div class="shop-item">
+              <div class="shop-ic"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="2"/><rect x="17" y="14" width="4" height="6" rx="2"/></svg></div>
+              <span>Earbuds Pro</span><em>$49</em>
+            </div>
+            <div class="shop-item">
+              <div class="shop-ic"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 7V3M15 7V3"/><path d="M7 7h10v4a5 5 0 0 1-10 0V7z"/><path d="M12 16v5"/></svg></div>
+              <span>MagCable 2m</span><em>$19</em>
+            </div>
+            <div class="shop-item">
+              <div class="shop-ic"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
+              <span>PowerBank 10K</span><em>$29</em>
+            </div>
+            <div class="shop-item">
+              <div class="shop-ic"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="3"/><circle cx="12" cy="18" r="1"/></svg></div>
+              <span>AeroCase</span><em>$15</em>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Chrome extensions -->
+    <article class="product glass glow-track reveal">
+      <div class="product-info">
+        <div class="product-meta">
+          <span class="chip chip-serv"><i></i>Service</span>
+          <span class="chip">HTML · CSS · JS</span>
+        </div>
+        <h3>Chrome extensions</h3>
+        <p>We build Chrome extensions that enhance the functionality, usability and user experience of the browser — adding new capabilities exactly where your users already work. Crafted with modern web technologies: HTML, CSS and JavaScript.</p>
+        <a class="btn btn-ghost" href="./ex.html">Learn more
+          <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="product-visual">
+        <div class="halo" aria-hidden="true"></div>
+        <div class="device browser" data-tilt aria-hidden="true">
+          <div class="browser-bar">
+            <span class="b-dots"><i></i><i></i><i></i></span>
+            <span class="b-url">chrome://extensions</span>
+            <span class="b-puz"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M19.4 13.6a2.1 2.1 0 1 1 0-3.2V7a2 2 0 0 0-2-2h-3.4a2.1 2.1 0 1 0-3.2 0H7a2 2 0 0 0-2 2v3.4a2.1 2.1 0 1 1 0 3.2V17a2 2 0 0 0 2 2h3.4a2.1 2.1 0 1 0 3.2 0H17a2 2 0 0 0 2-2v-3.4z"/></svg></span>
+          </div>
+          <div class="browser-body">
+            <div class="ext-row">
+              <div class="ext-ic g1"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
+              <div class="ext-txt"><b>Quick Tools</b><span></span></div>
+              <span class="toggle on"><i></i></span>
+            </div>
+            <div class="ext-row">
+              <div class="ext-ic g2"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <div class="ext-txt"><b>Tab Keeper</b><span style="width:58%"></span></div>
+              <span class="toggle on"><i></i></span>
+            </div>
+            <div class="ext-row">
+              <div class="ext-ic g3"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+              <div class="ext-txt"><b>Focus Timer</b><span style="width:64%"></span></div>
+              <span class="toggle"><i></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
 </section>
 
-<section class="text-gray-600 body-font">
-<div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-<div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-<h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Applieshop
-</h1>
-<p class="mb-8 leading-relaxed">Applieshop is an online store of mobile accessories that offers a wide range of original high-quality products that will become indispensable assistants in the daily use of your favorite gadgets, and can also serve as an excellent gift.</p>
-<div class="flex justify-center">
-<button class="inline-flex text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg">coming soon</button>
-</div>
-
-</div>
-<div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-<img class="object-cover object-center rounded" alt="hero" src="img/1.svg">
-</div>
-</div>
-</section>
-<section class="text-gray-600 body-font">
-<div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-<div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
-<img class="object-cover object-center rounded" alt="hero" src="img/4.svg">
-</div>
-<div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-<h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
-Google extensions
-</h1>
-<p class="mb-8 leading-relaxed">To build Chrome Extensions, one has to write programs that enhance the functionality, usability, and user experience at the Chrome web browser. The Chrome Extensions are able to add numerous new functionalities. In our company, we create chrome extensions by using development technologies like HTML, CSS, and JavaScript.</p>
-<div class="flex justify-center">
-<form action="./ex.html"></form>
-<button class="inline-flex text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg" onclick="location.href='./ex.html'">More</button>
-</form>
-
-</div>
-</div>
-</div>
+<!-- ============ Expertise ============ -->
+<section class="section" id="expertise" style="padding-top:20px">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="overline">Why Appliefy</span>
+      <h2>Consulting that ships</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card glass glow-track reveal">
+        <div class="why-ic"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h4>Industry &amp; technical experts</h4>
+        <p>A team that combines deep domain knowledge with hands-on engineering skills.</p>
+      </div>
+      <div class="why-card glass glow-track reveal d1">
+        <div class="why-ic"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <h4>World-class solutions</h4>
+        <p>Consulting solutions built to global standards, tailored to each client's context.</p>
+      </div>
+      <div class="why-card glass glow-track reveal d2">
+        <div class="why-ic"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+        <h4>Seamless collaboration</h4>
+        <p>Our consultants work as part of your organization to optimize existing resources.</p>
+      </div>
+      <div class="why-card glass glow-track reveal d3">
+        <div class="why-ic"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
+        <h4>Timely results</h4>
+        <p>Improvement strategies implemented on schedule — with measurable growth.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<footer class="text-gray-600 body-font">
-<div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
-<a href="./" class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-<img width="120px" height="120px" src="img/logo.png" alt="appliefy-logo">
-</a>
-<p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2022 Appliefy
+<!-- ============ CTA ============ -->
+<section class="section" id="contact" style="padding-top:20px">
+  <div class="container">
+    <div class="cta-panel glass glow-track reveal">
+      <span class="overline" style="justify-content:center;display:flex">Let's talk</span>
+      <h2>Have a project in mind?</h2>
+      <p>Tell us about it — we'll help optimize your resources and ship the right strategy for your product.</p>
+      <a class="btn btn-primary btn-lg" href="mailto:info@appliefy.com">Start a conversation
+        <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <div class="cta-mail">or write to <a href="mailto:info@appliefy.com">info@appliefy.com</a></div>
+    </div>
+  </div>
+</section>
 
-</p>
-<span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+</main>
 
-<a  href="mailto:info@appliefy.com" class="ml-3 text-gray-500">
-<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-</a>
-
-<a  href="https://www.instagram.com/appliefy/" class="ml-3 text-gray-500">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
- <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
- <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
-</svg>
-</a>
-<a href="https://linkedin.com/company/appliefy" class="ml-3 text-gray-500">
-<svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
- <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
- <circle cx="4" cy="4" r="2" stroke="none"></circle>
-</svg>
-</a>
-</span>
-</div>
+<!-- ============ Footer ============ -->
+<footer>
+  <div class="container footer-inner">
+    <a class="logo" href="./" aria-label="Appliefy home">
+      <img class="logo-img sm" src="img/logo.png" alt="Appliefy">
+    </a>
+    <p class="copy">© <span id="year">2026</span> Appliefy — Consulting solutions</p>
+    <div class="socials">
+      <a class="soc" href="mailto:info@appliefy.com" aria-label="Email">
+        <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/></svg>
+      </a>
+      <a class="soc" href="https://www.instagram.com/appliefy/" aria-label="Instagram">
+        <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zm1.5-4.87h.01"/></svg>
+      </a>
+      <a class="soc" href="https://linkedin.com/company/appliefy" aria-label="LinkedIn">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+    </div>
+  </div>
 </footer>
 
+<script>
+(function(){
+  /* Navbar state */
+  var nav = document.getElementById('nav');
+  var onScroll = function(){ nav.classList.toggle('scrolled', window.scrollY > 24); };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* Mobile menu */
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      menu.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  /* Scroll reveal */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:.15, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  /* Cursor-tracked glow on glass */
+  document.querySelectorAll('.glow-track').forEach(function(card){
+    card.addEventListener('pointermove', function(e){
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+
+  /* Gentle tilt on device mockups (desktop, motion allowed) */
+  var fine = window.matchMedia('(hover:hover) and (prefers-reduced-motion: no-preference)').matches;
+  if(fine){
+    document.querySelectorAll('[data-tilt]').forEach(function(el){
+      var wrap = el.closest('.product-visual') || el;
+      wrap.addEventListener('pointermove', function(e){
+        var r = wrap.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - .5;
+        var y = (e.clientY - r.top) / r.height - .5;
+        el.style.transform = 'perspective(900px) rotateY(' + (x*7) + 'deg) rotateX(' + (-y*7) + 'deg)';
+      });
+      wrap.addEventListener('pointerleave', function(){ el.style.transform = ''; });
+    });
+  }
+
+  /* Year */
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
 </body>
 </html>
